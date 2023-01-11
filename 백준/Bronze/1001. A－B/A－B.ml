@@ -1,0 +1,1 @@
+Printf.printf "%d\n" (Scanf.scanf "%d %d" (-));;
