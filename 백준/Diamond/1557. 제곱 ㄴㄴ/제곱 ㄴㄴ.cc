@@ -18,26 +18,16 @@ int main(){
     
     init();
     
-    int K;
+    ll K;
     cin >> K;
 
     int mobiusValue[100001];
-    fill(mobiusValue+1, mobiusValue+100001, 1);
-
-    for(int i = 2; i*i < 100001; i++){
-        if(mobiusValue[i]==1){
-            for(int j = i; j < 100001; j+=i)
-                mobiusValue[j] *= -i;
-            for(int j = i*i; j < 100001; j+=i*i)
-                mobiusValue[j] = 0;
+    mobiusValue[1] = 1;
+    
+    for(ll i = 1; i < 100001; i++){
+        for(ll j = 2*i; j < 100001; j+=i){
+            mobiusValue[j] -= mobiusValue[i];
         }
-    }
-
-    for(int i = 2; i < 100001; i++){
-        if (mobiusValue[i] == i) mobiusValue[i] = 1;
-        else if (mobiusValue[i] == -i) mobiusValue[i] = -1;
-        else if (mobiusValue[i] < 0) mobiusValue[i] = 1;
-        else if (mobiusValue[i] > 0) mobiusValue[i] = -1;
     }
 
     ll st = 0;
